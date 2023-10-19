@@ -66,11 +66,13 @@ bootstrapApplication(AppComponent, {
     Storage,
     APIClientService,
     {
-      provide: APP_INITIALIZER,
-      useFactory: initializeFactory,
-      deps: [InitializeAppService],
-      multi: true
+        provide: APP_INITIALIZER,
+        useFactory: initializeFactory,
+        deps: [InitializeAppService],
+        multi: true
     }
     // CGV-FIN-3
-  ],
+    ,
+    provideAnimations()
+],
 });

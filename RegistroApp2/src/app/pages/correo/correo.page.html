@@ -14,3 +14,42 @@
     </ion-toolbar>
   </ion-header>
 </ion-content>
+
+
+
+<ion-card class="cardcontenido">
+  <div class="container"> 
+    
+      
+
+    <ion-card-header >
+      <ion-card-title class="ion-text-center label">Paso 1: Ingresa tu correo</ion-card-title>
+      <ion-input [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"></ion-input>
+      <ion-button expand="full" (click)="comprobarCorreo(correo)">Recuperar Contraseña</ion-button>
+     
+    </ion-card-header>
+     
+  </div> 
+</ion-card>
+
+
+
+<ion-card  color="light"class="cardcontenido">
+  <div class="container"> 
+    
+    <ion-card-header >
+     
+      <ion-button expand="full" (click)="volverIngreso()">Regresar</ion-button>
+     
+    </ion-card-header>
+     
+  </div> 
+</ion-card>
+
+<ion-footer>
+  <div class="container">
+    
+    <h6   class="ion-text-center" >Genialtech since 2023</h6>
+    
+  </div>
+</ion-footer>

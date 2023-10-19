@@ -1,0 +1,52 @@
+<div class="marco">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Bloque de inicio</ion-col>
+      <ion-col size="6" class="borde-celda">
+        <span *ngIf="asistencia.bloqueInicio > 0">
+          {{ asistencia.bloqueInicio }}
+        </span>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Bloque de término</ion-col>
+      <ion-col size="6" class="borde-celda">
+        <span *ngIf="asistencia.bloqueTermino > 0">
+          {{ asistencia.bloqueTermino }}
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Día</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.dia }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Hora de inicio</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.horaInicio }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Hora de término</ion-col>
+      <ion-col size="6" class="borde-celda">{{asistencia.horaFin}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Sigla de asignatura</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.idAsignatura }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Nombre de asignatura</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.nombreAsignatura }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Nombre del profesor</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.nombreProfesor }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Sección</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.seccion }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="borde-celda">Sede</ion-col>
+      <ion-col size="6" class="borde-celda">{{ asistencia.sede }}</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

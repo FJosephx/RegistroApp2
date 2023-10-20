@@ -25,12 +25,14 @@
     <br>
     <ion-card-title class="ion-text-center label">
       <br><br>
-      Paso 2: <br><br>Pregunta Secreta {{ usuario.preguntaSecreta }}
+      Paso 2: 
+      <br><br> 
+      Pregunta Secreta {{ usuario.preguntaSecreta }}
     </ion-card-title>
     <ion-card>
       <ion-item>
         <ion-label position="floating">Respuesta</ion-label>
-        <ion-input ></ion-input>
+        <ion-input [(ngModel)]="respuestaSecreta" placeholder="Ingrese su respuesta secreta"></ion-input>
       </ion-item>
     </ion-card>
 
@@ -39,7 +41,7 @@
     </ion-card> 
     <ion-card> 
       <ion-button expand="full" (click)="volverIngreso()">Regresar</ion-button>
-  </ion-card> 
+    </ion-card> 
    
    
    </ion-card>

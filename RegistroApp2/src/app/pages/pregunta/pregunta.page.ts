@@ -22,15 +22,13 @@ export class PreguntaPage implements OnInit {
   ngOnInit() {
   }
 
-  correo = '';
-  preguntaSecreta= '';
   usuario = new Usuario();
   respuestaSecreta = ''; 
 
   async comprobarRespuesta(respuestaSecreta: string) {
     await this.bd.validarRespuesta(respuestaSecreta).then(async (usuario : Usuario | undefined) => {
       if (usuario){
-        showToast(`La pregunta es: ${usuario.preguntaSecreta}`);
+        showToast(`La respuesta es: ${usuario.respuestaSecreta}`);
         this.router.navigate(['/correcto']);
       } else {
         this.router.navigate(['/incorrecto']);
@@ -41,4 +39,5 @@ export class PreguntaPage implements OnInit {
   volverIngreso(){
     this.router.navigate(['/ingreso']);
   }
+
 }

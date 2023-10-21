@@ -20,7 +20,7 @@ export class CorreoPage implements OnInit {
   constructor(private authService: AuthService, private router: Router, private bd: DataBaseService, private toastController: ToastController) { }
 
   correo = 'fr.unda@duocuc.cl';
-
+ 
   ngOnInit() {
   }
 
@@ -29,7 +29,8 @@ async comprobarCorreo(correo: string) {
   await this.bd.validarCorreo(correo).then(async (usuario : Usuario | undefined) => {
     if (usuario){
       showToast(`El correo es: ${usuario.correo}`);
-      this.router.navigate(['/pregunta']);
+      this.router.navigate(['/pregunta'], {queryParams : {pregunta: usuario.preguntaSecreta}});
+      console.log(usuario)
     } else {
       this.router.navigate(['/incorrecto']);
     }

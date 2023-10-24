@@ -19,7 +19,7 @@ export class CorreoPage implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private bd: DataBaseService, private toastController: ToastController) { }
 
-  correo = 'fr.unda@duocuc.cl';
+  correo = '';
  
   ngOnInit() {
   }

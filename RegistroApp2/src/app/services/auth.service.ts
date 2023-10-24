@@ -74,4 +74,8 @@ export class AuthService {
     this.usuarioAutenticado.next(usuario);
   }
 
+  eliminarUsuarioAutenticado(usuario: Usuario){
+    this.storage.remove(this.keyUsuario);
+  }
+
 }

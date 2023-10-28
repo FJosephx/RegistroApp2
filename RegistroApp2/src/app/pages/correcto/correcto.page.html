@@ -1,17 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Asistencia DUOC - Correcto</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="flex-wrap align-content justify-content align-items">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Asistencia DUOC - Correcto</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content [fullscreen]="true">
+  <ion-card class="center-content">
+    <ion-card-header>
+      <ion-card-title size="large">Correcto</ion-card-title>
+
+    </ion-card-header>
+    <ion-card-content>
+      <img alt="Silhouette of mountains" width="150px" height="150px"
+        src="https://cdn.discordapp.com/attachments/1156738073359568947/1167624927805972540/image.png?ex=654ece74&is=653c5974&hm=00109ca06fcf54bcb0ddc78b4e2bd5c83b4d2c568e6313071d9abaf43814d619&" />
+      <h1>
+        Tu contraseña es: {{ password }}
+      </h1>
+    </ion-card-content>
+  </ion-card>
+
+  <!--  -->
+  <!-- <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">correcto</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <h1>Tu contraseña es: {{ password }}
-  </h1>
+  
 
-</ion-content>
+</ion-content> -->

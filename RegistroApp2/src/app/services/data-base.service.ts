@@ -1,5 +1,5 @@
 import { SQLiteDBConnection } from '@capacitor-community/sqlite';
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SQLiteService } from './sqlite.service';
 import { Usuario } from '../model/usuario';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -36,7 +36,7 @@ export class DataBaseService {
   async inicializarBaseDeDatos() {
 
     // Crear base de datos SQLite
-    await this.sqliteService.crearBaseDeDatos({database: this.nombreBD, upgrade: this.userUpgrades});
+    await this.sqliteService.crearBaseDeDatos({ database: this.nombreBD, upgrade: this.userUpgrades });
 
     // Abrir base de datos
     this.db = await this.sqliteService.abrirBaseDeDatos(this.nombreBD, false, 'no-encryption', 1, false);
@@ -51,19 +51,19 @@ export class DataBaseService {
   async crearUsuariosDePrueba() {
     await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', '1234', 'Franco', 'Unda', 'Nombre de mi mascota', 'Romy', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto', 'Valenzuela', 'Mi mejor amigo', 'juanito', 'N'));
-    await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'valparaiso', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'Longanizas de chillan', 'N'));
   }
 
   // Create y Update del CRUD. La creación y actualización de un usuario
   // se realizarán con el mismo método, ya que la instrucción "INSERT OR REPLACE"
   // revisa la clave primaria y si el registro es nuevo entonces lo inserta,
   // pero si el registro ya existe, entonces los actualiza.
-  
+
   async guardarUsuario(usuario: Usuario) {
     const sql = 'INSERT OR REPLACE INTO USUARIO (correo, password, nombre, apellido, ' +
       'preguntaSecreta, respuestaSecreta, sesionActiva) VALUES (?,?,?,?,?,?,?);';
-    await this.db.run(sql, [usuario.correo, usuario.password, usuario.nombre, usuario.apellido, 
-      usuario.preguntaSecreta, usuario.respuestaSecreta, usuario.sesionActiva]);
+    await this.db.run(sql, [usuario.correo, usuario.password, usuario.nombre, usuario.apellido,
+    usuario.preguntaSecreta, usuario.respuestaSecreta, usuario.sesionActiva]);
     await this.leerUsuarios();
   }
 
@@ -75,14 +75,14 @@ export class DataBaseService {
   // ReadAll del CRUD. Si existen registros entonces convierte los registros en una lista de usuarios
   // con la instrucción ".values as Usuario[];". Si la tabla no tiene registros.
   async leerUsuarios() {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO;')).values as Usuario[];
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO;')).values as Usuario[];
     this.listaUsuarios.next(usuarios);
     this.listaUsuariosFueActualizada.next(true);
   }
 
   // Read del CRUD
   async leerUsuario(correo: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE correo=?;', [correo])).values as Usuario[];
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE correo=?;', [correo])).values as Usuario[];
     return usuarios[0];
   }
 
@@ -95,7 +95,7 @@ export class DataBaseService {
 
   // Validar usuario
   async validarUsuario(correo: string, password: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE correo=? AND password=?;',
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE correo=? AND password=?;',
       [correo, password])).values as Usuario[];
     return usuarios[0];
   }
@@ -109,15 +109,15 @@ export class DataBaseService {
 
   //validar correo
   async validarCorreo(correo: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE correo=?;',
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE correo=?;',
       [correo])).values as Usuario[];
     return usuarios[0];
   }
 
-  
+
   //validar respuesta
   async validarRespuesta(respuestaSecreta: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE respuestaSecreta=?;',
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE respuestaSecreta=?;',
       [respuestaSecreta])).values as Usuario[];
     return usuarios[0];
   }
@@ -125,7 +125,7 @@ export class DataBaseService {
 
   //Encontrar pregunta usuario
   async validarPregunta(preguntaSecreta: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE preguntaSecreta=?;',
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE preguntaSecreta=?;',
       [preguntaSecreta])).values as Usuario[];
     return usuarios[0];
   }

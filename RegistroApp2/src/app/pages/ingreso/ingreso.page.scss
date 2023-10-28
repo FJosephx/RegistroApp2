@@ -1,8 +1,33 @@
+ion-content.background {
+  --background: url(https://www.sabbagharquitectos.com/wp-content/thumbgen_cache/cdae11f5808c9b83a3d6446aa7003d80.jpg) 0 0/100% 100% no-repeat;
+}
+
+ion-input {
+  color: rgb(236, 229, 229);
+  transition: color 0.2s;
+}
+
+ion-input:focus {
+  color: yellow;
+}
+
+.cardcontenido {
+  float: unset !important;
+  background: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: 0% 14%;
+}
+
 .centrado-vertical {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.texto {
+  color: rgba(255, 255, 255, 0.822);
 }
 
 .marco {

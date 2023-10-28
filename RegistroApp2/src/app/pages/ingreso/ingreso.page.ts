@@ -27,8 +27,22 @@ export class IngresoPage implements OnInit {
     this.authService.login(this.correo, this.password);
   }
 
-  recuperarContrasenia(){
+  recuperarContrasenia() {
     this.router.navigate(['/correo']);
+  }
+
+  changeColor(inputType: string) {
+    const element = document.querySelector(`ion-input[label="${inputType}"] label`);
+    if (element) {
+      element.classList.add('green');
+    }
+  }
+
+  resetColor(inputType: string) {
+    const element = document.querySelector(`ion-input[label="${inputType}"] label`);
+    if (element) {
+      element.classList.remove('green');
+    }
   }
 
 

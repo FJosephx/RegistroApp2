@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, NgZone, OnInit, Output, ViewChild } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { AfterViewInit, Component, ElementRef, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { IonicModule, LoadingController, AnimationController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { Asistencia } from 'src/app/model/asistencia';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +13,8 @@ import { BarcodeFormat, BarcodeScanner, ScanResult } from '@capacitor-mlkit/barc
 import { MessageEnum } from 'src/app/tools/message-enum';
 import { SQLiteService } from 'src/app/services/sqlite.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-qr',
@@ -21,7 +23,7 @@ import { DataBaseService } from 'src/app/services/data-base.service';
   imports: [IonicModule, CommonModule, FormsModule],
   standalone: true,
 })
-export class QrComponent implements OnInit {
+export class QrComponent implements OnInit, AfterViewInit {
 
   @ViewChild('video') private video!: ElementRef;
   @ViewChild('canvas') private canvas!: ElementRef;
@@ -38,7 +40,11 @@ export class QrComponent implements OnInit {
     private authService: AuthService,
     private bd: DataBaseService,
     private sqliteService: SQLiteService,
-    private readonly ngZone: NgZone) { }
+    private readonly ngZone: NgZone,
+    private router: Router,
+    private loadingController: LoadingController,
+    private animationController: AnimationController
+  ) { }
 
   async ngOnInit() {
     this.plataforma = this.sqliteService.platform;
@@ -56,6 +62,33 @@ export class QrComponent implements OnInit {
       this.comenzarEscaneoQRNativo();
     }
   }
+  ngAfterViewInit(): void {
+    const welcomeMessage: HTMLElement | null = document.getElementById('welcome-message');
+    if (welcomeMessage) {
+      const animation = this.animationController
+        .create()
+        .addElement(welcomeMessage)  // Cambia "this.asistencia" al elemento correcto
+        .duration(3000)
+        .easing('ease')
+        .delay(0)
+        .iterations(10)
+        .fill('forwards')
+        .keyframes([
+          { offset: 0, transform: 'scale3d(1,1,1)' },
+          { offset: 0.3, transform: 'scale3d(1.25,0.75,1)' },
+          { offset: 0.4, transform: 'scale3d(0.75,1.25,1)' },
+          { offset: 0.5, transform: 'scale3d(1.15,0.85,1)' },
+          { offset: 0.65, transform: 'scale3d(0.95,1.05,1)' },
+          { offset: 0.75, transform: 'scale3d(1.05,0.95,1)' },
+          { offset: 1, transform: 'scale3d(1,1,1)' },
+        ]);
+
+      animation.play();
+    }
+
+  }
+
+
 
   /**
    *  Proceso de escanéo de QR en un Navegador Web
@@ -63,7 +96,7 @@ export class QrComponent implements OnInit {
 
   public async comenzarEscaneoQRWeb() {
     const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
-      video: {facingMode: 'environment'}
+      video: { facingMode: 'environment' }
     });
     this.video.nativeElement.srcObject = mediaProvider;
     this.video.nativeElement.setAttribute('playsinline', 'true');
@@ -105,7 +138,7 @@ export class QrComponent implements OnInit {
     }
     return false;
   }
-  
+
   public detenerEscaneoQR(): void {
     this.escaneando = false;
   }
@@ -134,11 +167,11 @@ export class QrComponent implements OnInit {
     try {
       // Verificar si está instalado Google Barcode Scanner y si no lo instala
       await BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then(async (result) => {
-          if (!result.available) await BarcodeScanner.installGoogleBarcodeScannerModule();
+        if (!result.available) await BarcodeScanner.installGoogleBarcodeScannerModule();
       });
 
       // Verificar que BarcodeScanner sea soportado por el sistema
-      if (!await BarcodeScanner.isSupported()) 
+      if (!await BarcodeScanner.isSupported())
         return Promise.resolve('ERROR: Google Barcode Scanner no es compatible con este celular');
 
       // Solicitar permisos para usar la cámara con BarcodeScanner
@@ -155,15 +188,15 @@ export class QrComponent implements OnInit {
       await BarcodeScanner.removeAllListeners().then(() => {
         BarcodeScanner.addListener('googleBarcodeScannerModuleInstallProgress', (event) => {
           this.ngZone.run(() => {
-              console.log('googleBarcodeScannerModuleInstallProgress', event);
+            console.log('googleBarcodeScannerModuleInstallProgress', event);
           });
         });
       });
 
       // Devolver valor del QR capturado
-      const { barcodes }: ScanResult = await BarcodeScanner.scan({ formats: [BarcodeFormat.QrCode],});
+      const { barcodes }: ScanResult = await BarcodeScanner.scan({ formats: [BarcodeFormat.QrCode], });
       return Promise.resolve(barcodes[0].displayValue);
-    } catch(error: any) {
+    } catch (error: any) {
       if (error.message.includes('canceled')) return Promise.resolve('');
       return Promise.resolve('ERROR: No fue posible leer el código QR');
     }

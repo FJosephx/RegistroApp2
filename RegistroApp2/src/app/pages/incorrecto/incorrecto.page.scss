@@ -1,0 +1,25 @@
+ion-header {
+    margin-bottom: 0;
+}
+
+ion-card {
+    margin-top: 30px;
+    padding: 0;
+    flex-wrap: nowrap;
+    align-content: normal;
+    justify-content: normal;
+    align-items: normal;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+}
+
+.center-content {
+    text-align: center;
+}

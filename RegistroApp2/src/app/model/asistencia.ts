@@ -1,4 +1,7 @@
 export class Asistencia {
+  nativeElement(nativeElement: any) {
+    throw new Error('Method not implemented.');
+  }
 
   public bloqueInicio: number;
   public bloqueTermino: number;
@@ -34,8 +37,7 @@ export class Asistencia {
     nombreAsignatura: string,
     nombreProfesor: string,
     seccion: string,
-    sede: string): void
-  {
+    sede: string): void {
     this.bloqueInicio = bloqueInicio;
     this.bloqueTermino = bloqueTermino;
     this.dia = dia;
@@ -54,7 +56,7 @@ export class Asistencia {
     }
     return new Asistencia();
   }
-  
+
   verificarAsistenciaDesdeQR(datosQR: string) {
     if (datosQR !== '') {
       try {
@@ -62,7 +64,7 @@ export class Asistencia {
         if (json.bloqueInicio !== undefined) {
           return true;
         }
-      } catch(error: any) {}
+      } catch (error: any) { }
     }
     return false;
   }

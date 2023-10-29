@@ -32,7 +32,9 @@ export class CorrectoPage implements OnInit {
 
   }
 
-
+  volverIngreso(){
+    this.router.navigate(['/ingreso']);
+  }
 
 }
 

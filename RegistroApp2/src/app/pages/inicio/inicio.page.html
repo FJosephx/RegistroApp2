@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Asistencia DUOC - Inicio</ion-title>
+    <ion-card-header>
+      <img alt="DUOC UC" height="70px"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Logo_DuocUC.svg/711px-Logo_DuocUC.svg.png" />
+      <ion-card-title class="ion-text-center texto">Asistencia DuocUC</ion-card-title>
+    </ion-card-header>
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="componente_actual" (ngModelChange)="cambiarComponente($event)">

@@ -19,10 +19,14 @@
 
 
       <ion-card-header >
-        <ion-card-title class="ion-text-center label">Paso 2: Responder pregunta de seguridad</ion-card-title>
+        <ion-card-title class="ion-text-center label">
+          Paso 2: Responder pregunta de seguridad <br><br> {{preguntaSecreta}} <br>
+        </ion-card-title>
+
         <ion-input [(ngModel)]="respuestaSecreta" label="Respuesta" placeholder="Ingrese su respuesta secreta" labelPlacement="floating"></ion-input>
+        
         <ion-button expand="full" (click)="comprobarRespuesta(respuestaSecreta)">Verificar Respuesta</ion-button>
-       
+      
       </ion-card-header>
 
     </div>

@@ -19,8 +19,8 @@
 
 
       <ion-card-header >
-        <ion-card-title class="ion-text-center label">
-          Paso 2: Responder pregunta de seguridad <br><br> {{preguntaSecreta}} <br>
+        <ion-card-title class="ion-text-center label" style="color: aqua; background-color: rgb(93, 83, 83); border-radius: 1ch;">
+          <br>Paso 2: Responder pregunta de seguridad <br><br> <p>{{preguntaSecreta}}</p>
         </ion-card-title>
 
         <ion-input [(ngModel)]="respuestaSecreta" label="Respuesta" placeholder="Ingrese su respuesta secreta" labelPlacement="floating"></ion-input>

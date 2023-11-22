@@ -75,6 +75,7 @@ bootstrapApplication(AppComponent, {
     ,
     provideAnimations(),
     provideAnimations(),
+    provideAnimations(),
     provideAnimations()
 ],
 });

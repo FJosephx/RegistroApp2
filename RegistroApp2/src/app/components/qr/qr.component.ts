@@ -62,16 +62,17 @@ export class QrComponent implements OnInit, AfterViewInit {
       this.comenzarEscaneoQRNativo();
     }
   }
+  
   ngAfterViewInit(): void {
     const welcomeMessage: HTMLElement | null = document.getElementById('welcome-message');
     if (welcomeMessage) {
       const animation = this.animationController
         .create()
-        .addElement(welcomeMessage)  // Cambia "this.asistencia" al elemento correcto
+        .addElement(welcomeMessage)
         .duration(3000)
         .easing('ease')
         .delay(0)
-        .iterations(10)
+        .iterations(100)
         .fill('forwards')
         .keyframes([
           { offset: 0, transform: 'scale3d(1,1,1)' },

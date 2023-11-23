@@ -2,7 +2,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AnimationController, IonicModule } from '@ionic/angular';
 import { QrComponent } from 'src/app/components/qr/qr.component';
 import { MiclaseComponent } from 'src/app/components/miclase/miclase.component';
 import { ForoComponent } from 'src/app/components/foro/foro.component';
@@ -26,11 +26,34 @@ export class InicioPage implements OnInit {
   constructor(
     private authService: AuthService, 
     private bd: DataBaseService,
-    private api: APIClientService) { }
+    private api: APIClientService,
+    private animationController: AnimationController) { }
 
   ngOnInit() {
     this.componente_actual = 'qr';
     this.bd.datosQR.next('');
+  }
+
+  ngAfterViewInit(): void {
+    const tittleElement: HTMLElement | null = document.getElementById('titulo');
+    if (tittleElement) {
+      const animation = this.animationController
+        .create()
+        .addElement(tittleElement)
+        .duration(3000)
+        .easing('ease')
+        .delay(0)
+        .iterations(100)
+        .fill('forwards')
+        .keyframes([
+          { offset: 0, transform: 'translateX(-100%)' },
+          { offset: 0.9, transform: 'translateX(0%)' },
+          { offset: 1, transform: 'translateX(100%)' },
+        ]);
+
+      animation.play();
+    }
+
   }
 
   cambiarComponente(nombreComponente: string) {

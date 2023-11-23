@@ -20,12 +20,12 @@
 
       <ion-card-header>
 
-        <ion-input [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"
+        <ion-input id="correo" [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"
           (focus)="changeColor('correo')" (blur)="resetColor('correo')"></ion-input>
-
+ 
         <br>
 
-        <ion-input [(ngModel)]="password" type="password" label="Contraseña" labelPlacement="floating"
+        <ion-input id="password" [(ngModel)]="password" type="password" label="Contraseña" labelPlacement="floating"
           (focus)="changeColor('password')" (blur)="resetColor('password')"></ion-input>
 
         <br>

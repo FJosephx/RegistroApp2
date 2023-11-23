@@ -31,6 +31,10 @@ export class IngresoPage implements OnInit {
     this.router.navigate(['/correo']);
   }
 
+  registrarse() {
+    this.router.navigate(['/registro']);
+  }
+
   changeColor(inputType: string) {
     const element = document.querySelector(`ion-input[label="${inputType}"] label`);
     if (element) {

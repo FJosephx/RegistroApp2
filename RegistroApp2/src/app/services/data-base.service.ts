@@ -49,10 +49,10 @@ export class DataBaseService {
   }
 
   async crearUsuariosDePrueba() {
-    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'Administrador', 'Sistema', 'admin', 'admin', 'N', 'admin'));
-    await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', 'franco123', 'Franco', 'Unda', 'Nombre de mi mascota', 'romy', 'N', 'usuario'));
-    await this.guardarUsuario(Usuario.getUsuario('ro.carrascob@duocuc.cl', 'romina123', 'Alberto', 'Valenzuela', 'Mi musico favorito', 'drake', 'N', 'usuario'));
-    await this.guardarUsuario(Usuario.getUsuario('glara@duocuc.cl', 'gonza123', 'Gonzalo', 'Lara', 'Mi equipo favorito', 'colocolo', 'N', 'usuario'));
+    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'admin', 'del sistema', 'admin', 'admin', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', 'franco123', 'Franco', 'Unda', 'Nombre de mi mascota', 'romy', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('ro.carrascob@duocuc.cl', 'romina123', 'Romina', 'Carrasco', 'Mi musico favorito', 'drake', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('glara@duocuc.cl', 'gonza123', 'Gonzalo', 'Lara', 'Mi equipo favorito', 'colocolo', 'N',));
 
   }
 
@@ -130,6 +130,12 @@ export class DataBaseService {
     const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE preguntaSecreta=?;',
       [preguntaSecreta])).values as Usuario[];
     return usuarios[0];
+  }
+
+
+  async getUsuariosRegistrados(): Promise<Usuario[]> {
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO;')).values as Usuario[];
+    return usuarios;
   }
 
 

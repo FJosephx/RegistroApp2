@@ -12,7 +12,7 @@ export class AuthService {
 
   keyUsuario = 'USUARIO_AUTENTICADO';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
-  userRole:string = '';
+
 
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { }
 
@@ -33,6 +33,7 @@ export class AuthService {
         this.storage.set(this.keyUsuario, usuarioAutenticado);
         this.usuarioAutenticado.next(usuarioAutenticado); 
         this.router.navigate(['inicio']);
+        console.log(usuarioAutenticado)
       } else {
         await this.bd.validarUsuario(correo, password).then(async (usuario: Usuario | undefined) => {
           if (usuario) {
@@ -41,6 +42,7 @@ export class AuthService {
             this.storage.set(this.keyUsuario, usuario);
             this.usuarioAutenticado.next(usuario);
             this.router.navigate(['inicio']);
+            console.log(usuario)
           } else {
             showToast(`El correo o la password son incorrectos`);
             this.router.navigate(['ingreso']);

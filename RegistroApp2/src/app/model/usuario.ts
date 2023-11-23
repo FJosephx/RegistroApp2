@@ -10,12 +10,11 @@ export class Usuario {
   preguntaSecreta = '';
   respuestaSecreta = '';
   sesionActiva = '';
-  rol: 'admin' | 'usuario' | undefined;
 
   constructor() { }
 
   setUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
-    respuestaSecreta: string, sesionActiva: string, rol: string)
+    respuestaSecreta: string, sesionActiva: string)
   {
     this.correo = correo;
     this.password = password;
@@ -27,10 +26,10 @@ export class Usuario {
   }
 
   static getUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
-    respuestaSecreta: string, sesionActiva: string, rol: string)
+    respuestaSecreta: string, sesionActiva: string)
   {
     const usu = new Usuario();
-    usu.setUsuario(correo, password, nombre, apellido, preguntaSecreta, respuestaSecreta, sesionActiva, rol)
+    usu.setUsuario(correo, password, nombre, apellido, preguntaSecreta, respuestaSecreta, sesionActiva)
     return usu;
   }
 

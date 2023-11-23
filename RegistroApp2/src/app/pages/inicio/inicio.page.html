@@ -8,19 +8,19 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="componente_actual" (ngModelChange)="cambiarComponente($event)">
-      <ion-segment-button value="qr" *ngIf="!isAdmin()">
+      <ion-segment-button value="qr"  *ngIf="!adm">
         <ion-label>QR</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="miclase" *ngIf="!isAdmin()">
+      <ion-segment-button value="miclase" *ngIf="!adm">
         <ion-label>Mi clase</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="foro" *ngIf="!isAdmin()">
+      <ion-segment-button value="foro">
         <ion-label>Foro</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="misdatos" *ngIf="!isAdmin()">
+      <ion-segment-button value="misdatos">
         <ion-label>Mis datos</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="admin" *ngIf="isAdmin()">
+      <ion-segment-button value="admin" *ngIf="adm">
         <ion-label>Admin</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -32,7 +32,7 @@
   <app-miclase [hidden]="componente_actual !== 'miclase'"></app-miclase>
   <app-foro [hidden]="componente_actual !== 'foro'"></app-foro>
   <app-misdatos [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
-  <app-admin [hidden]="componente_actual !== 'admin'|| !isAdmin()"></app-admin>
+  <app-admin [hidden]="componente_actual !== 'admin'"></app-admin>
 </ion-content>
 
 <ion-footer>

@@ -10,6 +10,7 @@ import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.componen
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { APIClientService } from 'src/app/services/apiclient.service';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-inicio',
@@ -23,6 +24,8 @@ import { AdminComponent } from 'src/app/components/admin/admin.component';
 export class InicioPage implements OnInit {
 
   componente_actual = 'qr';
+  usuario: Usuario | null = null;
+  adm = false;
 
   constructor(
     private authService: AuthService, 
@@ -31,13 +34,15 @@ export class InicioPage implements OnInit {
     private animationController: AnimationController){}
 
   ngOnInit() {
-    this.componente_actual = 'qr';
-    this.bd.datosQR.next('');
-  }
-
-  
-  isAdmin(): boolean{
-    return this.authService.userRole === 'admin';
+    this.authService.usuarioAutenticado.subscribe((usuario) => {
+        this.usuario = usuario;
+      if (this.usuario?.nombre?.toLowerCase() === 'admin') {
+        this.componente_actual = 'misdatos';
+        this.adm= true;
+      }else{
+        this.adm = false;
+      }
+    });
   }
 
   ngAfterViewInit(): void {

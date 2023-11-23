@@ -9,6 +9,7 @@ import { ForoComponent } from 'src/app/components/foro/foro.component';
 import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.component';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { APIClientService } from 'src/app/services/apiclient.service';
+import { AdminComponent } from 'src/app/components/admin/admin.component';
 
 @Component({
   selector: 'app-inicio',
@@ -16,7 +17,7 @@ import { APIClientService } from 'src/app/services/apiclient.service';
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,
-    QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent,
+    QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent,AdminComponent
   ],
 })
 export class InicioPage implements OnInit {
@@ -27,11 +28,16 @@ export class InicioPage implements OnInit {
     private authService: AuthService, 
     private bd: DataBaseService,
     private api: APIClientService,
-    private animationController: AnimationController) { }
+    private animationController: AnimationController){}
 
   ngOnInit() {
     this.componente_actual = 'qr';
     this.bd.datosQR.next('');
+  }
+
+  
+  isAdmin(): boolean{
+    return this.authService.userRole === 'admin';
   }
 
   ngAfterViewInit(): void {
@@ -65,5 +71,4 @@ export class InicioPage implements OnInit {
   cerrarSesion() {
     this.authService.logout();
   }
-
 }

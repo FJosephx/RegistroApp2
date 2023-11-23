@@ -10,11 +10,12 @@ export class Usuario {
   preguntaSecreta = '';
   respuestaSecreta = '';
   sesionActiva = '';
+  rol: 'admin' | 'usuario' | undefined;
 
   constructor() { }
 
   setUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
-    respuestaSecreta: string, sesionActiva: string)
+    respuestaSecreta: string, sesionActiva: string, rol: string)
   {
     this.correo = correo;
     this.password = password;
@@ -26,10 +27,10 @@ export class Usuario {
   }
 
   static getUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
-    respuestaSecreta: string, sesionActiva: string)
+    respuestaSecreta: string, sesionActiva: string, rol: string)
   {
     const usu = new Usuario();
-    usu.setUsuario(correo, password, nombre, apellido, preguntaSecreta, respuestaSecreta, sesionActiva)
+    usu.setUsuario(correo, password, nombre, apellido, preguntaSecreta, respuestaSecreta, sesionActiva, rol)
     return usu;
   }
 
@@ -72,5 +73,7 @@ export class Usuario {
       || this.validarRespuestaSecreta(respuestaSecreta)
   }
 
+
+  
 }
   

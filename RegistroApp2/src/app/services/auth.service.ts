@@ -12,6 +12,7 @@ export class AuthService {
 
   keyUsuario = 'USUARIO_AUTENTICADO';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
+  userRole:string = '';
 
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { }
 
@@ -30,7 +31,7 @@ export class AuthService {
       if (usuarioAutenticado) {
         this.bd.actualizarSesionActiva(correo, 'S');
         this.storage.set(this.keyUsuario, usuarioAutenticado);
-        this.usuarioAutenticado.next(usuarioAutenticado);
+        this.usuarioAutenticado.next(usuarioAutenticado); 
         this.router.navigate(['inicio']);
       } else {
         await this.bd.validarUsuario(correo, password).then(async (usuario: Usuario | undefined) => {

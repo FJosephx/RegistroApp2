@@ -32,7 +32,7 @@ export class RegistroPage  implements OnInit {
   }
 
   
-  volverIngreso(){
+  Ingreso(){
     this.router.navigate(['/ingreso']);
   }
 

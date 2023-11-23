@@ -49,9 +49,11 @@ export class DataBaseService {
   }
 
   async crearUsuariosDePrueba() {
-    await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', '1234', 'Franco', 'Unda', 'Nombre de mi mascota', 'Romy', 'N'));
-    await this.guardarUsuario(Usuario.getUsuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto', 'Valenzuela', 'Mi mejor amigo', 'juanito', 'N'));
-    await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'Longanizas de chillan', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'admin', 'del sistema', 'admin', 'admin', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', 'franco123', 'Franco', 'Unda', 'Nombre de mi mascota', 'romy', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('ro.carrascob@duocuc.cl', 'romina123', 'Romina', 'Carrasco', 'Mi musico favorito', 'drake', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('glara@duocuc.cl', 'gonza123', 'Gonzalo', 'Lara', 'Mi equipo favorito', 'colocolo', 'N',));
+
   }
 
   // Create y Update del CRUD. La creación y actualización de un usuario
@@ -128,6 +130,12 @@ export class DataBaseService {
     const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO WHERE preguntaSecreta=?;',
       [preguntaSecreta])).values as Usuario[];
     return usuarios[0];
+  }
+
+
+  async getUsuariosRegistrados(): Promise<Usuario[]> {
+    const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO;')).values as Usuario[];
+    return usuarios;
   }
 
 

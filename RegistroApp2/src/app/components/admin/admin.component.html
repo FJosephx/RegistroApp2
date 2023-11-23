@@ -1,0 +1,15 @@
+<!-- admin.page.html -->
+
+<ion-content>
+  <ion-card *ngFor="let usuario of usuariosRegistrados; where usuario.correo instanceof string && usuario.correo !== 'admin@admin.cl'">
+    <ion-card-header>
+      {{ usuario.nombre }} {{ usuario.apellido }}
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Muestra otras propiedades del usuario según sea necesario -->
+      Correo: {{ usuario.correo }}
+      <br>
+      <ion-button (click)="eliminarUsuario(usuario)">Eliminar Usuario</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

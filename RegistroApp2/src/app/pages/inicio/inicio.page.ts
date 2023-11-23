@@ -9,6 +9,8 @@ import { ForoComponent } from 'src/app/components/foro/foro.component';
 import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.component';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { APIClientService } from 'src/app/services/apiclient.service';
+import { AdminComponent } from 'src/app/components/admin/admin.component';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-inicio',
@@ -16,22 +18,31 @@ import { APIClientService } from 'src/app/services/apiclient.service';
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,
-    QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent,
+    QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent,AdminComponent
   ],
 })
 export class InicioPage implements OnInit {
 
   componente_actual = 'qr';
+  usuario: Usuario | null = null;
+  adm = false;
 
   constructor(
     private authService: AuthService, 
     private bd: DataBaseService,
     private api: APIClientService,
-    private animationController: AnimationController) { }
+    private animationController: AnimationController){}
 
   ngOnInit() {
-    this.componente_actual = 'qr';
-    this.bd.datosQR.next('');
+    this.authService.usuarioAutenticado.subscribe((usuario) => {
+        this.usuario = usuario;
+      if (this.usuario?.nombre?.toLowerCase() === 'admin') {
+        this.componente_actual = 'misdatos';
+        this.adm= true;
+      }else{
+        this.adm = false;
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -65,5 +76,4 @@ export class InicioPage implements OnInit {
   cerrarSesion() {
     this.authService.logout();
   }
-
 }

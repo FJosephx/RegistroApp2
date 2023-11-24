@@ -71,14 +71,6 @@
       "apellido": "Fuentes",
       "titulo": "Eventos Culturales en el Instituto Duoc",
       "contenido": "Descubre la diversidad cultural en el Instituto Duoc. Participa en nuestros eventos culturales que celebran la creatividad y el arte."
-    },
-    {
-      "id": 10,
-      "correo": "avalenzuela@duocuc.cl",
-      "nombre": "Alberto",
-      "apellido": "Valenzuela",
-      "titulo": "Publicación franco",
-      "contenido": "esto es una publicación"
     }
   ]
 }

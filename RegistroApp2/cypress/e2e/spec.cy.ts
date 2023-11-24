@@ -4,7 +4,6 @@
 //   it('passes', () => {
 //     cy.visit('https://example.cypress.io')
 //   })})
-
 //Verificar que el inicio no entre con credenciales incorrectas
   it('verificar inicio incorrecto', () => {  
    cy.visit('http://localhost:8100/')
@@ -59,28 +58,43 @@ it('verificar inicio correcto', () => {
 
 //verificar foro agregar publicacion
 it('debe visitar la página de inicio y agregar una nueva publicación', () => {
-  // Abre la página de inicio de la aplicación web.
   cy.visit('http://localhost:8100/inicio')
   .then(() =>{
   cy.wait(5000);
-  cy.intercept('/Foro').as('route')});
-
+  const foro = cy.get('ion-segment-button[value="foro"]');
+  foro.click();
   // Espera a que el elemento #Tituloforo esté visible.
   cy.wait(5000);
-
-  // Escribe el texto "Publicación franco" en el campo de título.
   cy.get('#Tituloforo').type('Publicación franco');
-
   //Espera a que el elemento sea visible 
   cy.wait(5000);
-
-  // Inserta el texto "esto es una publicación" en el campo de contenido.
   cy.get('#Contenido').type('esto es una publicación');
-  
-
   // Hace clic en el botón "Guardar".
+  cy.wait(5000);
   cy.contains('Guardar').click();
+  cy.wait(5000);
+  cy.contains('Aceptar').click();
 });
+});
+
+//eliminar publicación anterior
+it('debe eliminar la publicacion', ()=>{
+  cy.visit('http://localhost:8100/inicio')
+  .then(() =>{
+    cy.wait(5000);
+    const foro = cy.get('ion-segment-button[value="foro"]');
+    foro.click();
+      cy.get('#nombrepubli').should('contain.text', 'Autor: Alberto Valenzuela');
+     });
+     cy.wait(5000);
+    cy.contains('Eliminar').click();
+    cy.wait(5000);
+    cy.contains('Aceptar');
+    cy.wait(5000);
+});
+
+
+
 //cerrar sesión 
 it('cerrar sesion', ()=>{
   cy.visit('http://localhost:8100/inicio')

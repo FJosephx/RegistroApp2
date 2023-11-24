@@ -7,11 +7,11 @@
   </div>
 
   <ion-item>
-    <ion-input type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
+    <ion-input type="text" id="nombre" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
 
   </ion-item>
   <ion-item>
-    <ion-input type="text" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating"></ion-input>
+    <ion-input type="text" id="apellido" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating"></ion-input>
 
   </ion-item>
 
@@ -21,24 +21,24 @@
 
 
   <ion-item>
-    <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta"
+    <ion-input type="text" id="preguntaSecreta" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta"
       labelPlacement="floating"></ion-input>
 
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta"
+    <ion-input type="text" id="respuestaSecreta" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta"
       labelPlacement="floating"></ion-input>
 
   </ion-item>
 
   <ion-item>
-    <ion-input type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating"></ion-input>
+    <ion-input id="password-1"type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating"></ion-input>
 
   </ion-item>
 
   <ion-item>
-    <ion-input type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña"
+    <ion-input id ="contra"  type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña"
       labelPlacement="floating"></ion-input>
 
   </ion-item>

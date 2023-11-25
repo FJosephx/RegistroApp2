@@ -24,7 +24,6 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.authService.usuarioAutenticado.subscribe((usuario) => {
         this.usuario = usuario;
-        console.log('nombre usuario',this.usuario?.nombre);
       if (this.usuario?.nombre?.toLowerCase() === 'admin') {
         this.adm= true;
       }else{

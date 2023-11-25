@@ -37,8 +37,8 @@ export class InicioPage implements OnInit {
     this.authService.usuarioAutenticado.subscribe((usuario) => {
         this.usuario = usuario;
       if (this.usuario?.nombre?.toLowerCase() === 'admin') {
-        this.componente_actual = 'misdatos';
         this.adm= true;
+        this.componente_actual = 'misdatos';
       }else{
         this.adm = false;
       }

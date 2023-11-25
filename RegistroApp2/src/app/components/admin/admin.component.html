@@ -1,7 +1,7 @@
 <!-- admin.page.html -->
 
 <ion-content>
-  <ion-card *ngFor="let usuario of usuariosRegistrados; where usuario.correo instanceof string && usuario.correo !== 'admin@admin.cl'">
+  <ion-card *ngFor="let usuario of usuariosRegistrados;">
     <ion-card-header>
       {{ usuario.nombre }} {{ usuario.apellido }}
     </ion-card-header>

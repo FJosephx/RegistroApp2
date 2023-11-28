@@ -49,7 +49,7 @@ export class DataBaseService {
   }
 
   async crearUsuariosDePrueba() {
-    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'admin', 'del sistema', 'admin', 'admin', 'N',));
+    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'admin', 'sistema', 'admin', 'admin', 'N',));
     await this.guardarUsuario(Usuario.getUsuario('fr.unda@duocuc.cl', 'franco123', 'Franco', 'Unda', 'Nombre de mi mascota', 'romy', 'N',));
     await this.guardarUsuario(Usuario.getUsuario('ro.carrascob@duocuc.cl', 'romina123', 'Romina', 'Carrasco', 'Mi musico favorito', 'drake', 'N',));
     await this.guardarUsuario(Usuario.getUsuario('glara@duocuc.cl', 'gonza123', 'Gonzalo', 'Lara', 'Mi equipo favorito', 'colocolo', 'N',));

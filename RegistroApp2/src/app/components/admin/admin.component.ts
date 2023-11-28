@@ -14,7 +14,7 @@ import { DataBaseService } from 'src/app/services/data-base.service';
   standalone: true,
 })
 export class AdminComponent implements OnInit {
-  usuariosRegistrados: any[] = [];
+  usuariosRegistrados: Usuario[] = [];
   usuario: Usuario | null = null;
   adm = false;
 
@@ -34,8 +34,10 @@ export class AdminComponent implements OnInit {
     this.obtenerUsuariosRegistrados();
   }
 
-
-
+  filtrarUsuario(): Usuario[] {
+    return this.usuariosRegistrados.filter(usuario => usuario.correo !== 'admin@admin.cl');
+  }
+  
   obtenerUsuariosRegistrados() {
     this.sqliteService.getUsuariosRegistrados().then((usuarios) => {
       this.usuariosRegistrados = usuarios;
